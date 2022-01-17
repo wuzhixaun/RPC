@@ -30,7 +30,7 @@ public class RpcClient {
     Channel channel;
 
 
-    private RpcClientHandler rpcClientHandler;
+    private RpcClientHandler rpcClientHandler =  new RpcClientHandler();;
     private ExecutorService executorService = Executors.newFixedThreadPool(2);
 
     public RpcClient(String ip, int port) {
@@ -51,7 +51,7 @@ public class RpcClient {
             bootstrap.group(bossGroup)
                     .channel(NioSocketChannel.class)  // 4. 设置通道实现
                     .option(ChannelOption.SO_KEEPALIVE, true) // 5. 设置通道的活跃状态
-                    .option(ChannelOption.SO_TIMEOUT, 3000)// 6. 设置连接超时时间
+                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)// 6. 设置连接超时时间
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {

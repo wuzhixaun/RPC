@@ -27,6 +27,7 @@ public class RpcClientProxy {
                 RpcRequest request = new RpcRequest();
                 request.setRequestId(UUID.randomUUID().toString());
                 request.setClassName(method.getDeclaringClass().getName());
+                request.setMethodName(method.getName());
                 request.setParameterTypes(method.getParameterTypes());
                 request.setParameters(args);
                 // * 2. 创建RpcClient对象
